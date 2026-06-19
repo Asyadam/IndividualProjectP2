@@ -1,0 +1,650 @@
+{
+  "info": {
+    "_postman_id": "cdb3fcbb-4964-400b-a0ae-779bebb7f285",
+    "name": "IndividualProject02",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34394970"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"syadam\",\r\n  \"email\": \"syadam@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://individualprojectp2-production.up.railway.app/register",
+              "protocol": "https",
+              "host": [
+                "individualprojectp2-production",
+                "up",
+                "railway",
+                "app"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"username\": \"syadam\",\r\n  \"email\": \"syadam@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 01:33:52 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "213"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"username\": \"syadam\",\n        \"email\": \"syadam@gmail.com\",\n        \"deposit_amount\": 0,\n        \"role\": \"user\",\n        \"created_at\": \"2026-06-19T08:33:52.760227Z\",\n        \"updated_at\": \"2026-06-19T08:33:52.760227Z\"\n    },\n    \"message\": \"register success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"syadam@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"syadam@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 01:37:30 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "224"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkxOTQ1MH0.SscGFRCdnj4Sk36Pd0UNpHkEhVd_4CkeZJhYjkH_XIE\"\n    },\n    \"message\": \"login success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Deposits",
+      "item": [
+        {
+          "name": "deposits",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkzOTI2OX0.F5wPjvuubpFzLSiD4uqsHXpLkPcsLHz5og0z7-W0PWI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": 300000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://individualprojectp2-production.up.railway.app/deposits",
+              "protocol": "https",
+              "host": [
+                "individualprojectp2-production",
+                "up",
+                "railway",
+                "app"
+              ],
+              "path": [
+                "deposits"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "xendit callback",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkyNTIwN30.J6SVPCsLg-7tiCfBXntEVxvDkBH_AqnO3q7tAChxS9c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-callback-token",
+                "value": "egsuSjGtqIvcyfjLEHXe470NHXCrMOt2huC49FhiuwmIhfuj",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"external_id\": \"deposit-1-1781840860\",\r\n  \"status\": \"PAID\",\r\n  \"amount\": 300000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/xendit/callback",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "xendit",
+                "callback"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "xendit callback",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-callback-token",
+                    "value": "egsuSjGtqIvcyfjLEHXe470NHXCrMOt2huC49FhiuwmIhfuj",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"external_id\": \"deposit-1-1781840860\",\r\n  \"status\": \"PAID\",\r\n  \"amount\": 300000\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/xendit/callback",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "xendit",
+                    "callback"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 03:51:46 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "325"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 3,\n        \"user_id\": 1,\n        \"amount\": 300000,\n        \"payment_link\": \"https://checkout-staging.xendit.co/web/6a34bbdc9cc85f96c7c6a159\",\n        \"payment_status\": \"paid\",\n        \"external_id\": \"deposit-1-1781840860\",\n        \"created_at\": \"2026-06-19T10:47:41.631002Z\",\n        \"updated_at\": \"2026-06-19T10:51:46.077516Z\"\n    },\n    \"message\": \"xendit callback processed successfully\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "venues",
+      "item": [
+        {
+          "name": "add venues",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkyMDc3OX0.KkBF7ovLrVzyCrijXyICcUTqi8OVowEQKQHyQhn7Z5Q",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Lapangan Futsal Garuda\",\r\n  \"category\": \"Futsal\",\r\n  \"location\": \"Medan\",\r\n  \"stock_availability\": 1,\r\n  \"rental_cost\": 100000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/venues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "venues"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 add venues",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Lapangan Futsal Garuda\",\r\n  \"category\": \"Futsal\",\r\n  \"location\": \"Medan\",\r\n  \"stock_availability\": 1,\r\n  \"rental_cost\": 100000\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/venues",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "venues"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 02:01:18 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "256"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Lapangan Futsal Garuda\",\n        \"category\": \"Futsal\",\n        \"location\": \"Medan\",\n        \"stock_availability\": 1,\n        \"rental_cost\": 100000,\n        \"created_at\": \"2026-06-19T09:01:18.37847Z\",\n        \"updated_at\": \"2026-06-19T09:01:18.37847Z\"\n    },\n    \"message\": \"venue created successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "venues",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "200 venues",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/venues",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "venues"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 02:20:48 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "250"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Lapangan Futsal Garuda\",\n            \"category\": \"Futsal\",\n            \"location\": \"Medan\",\n            \"stock_availability\": 1,\n            \"rental_cost\": 100000,\n            \"created_at\": \"2026-06-19T09:01:18.37847Z\",\n            \"updated_at\": \"2026-06-19T09:01:18.37847Z\"\n        }\n    ],\n    \"message\": \"success get venues\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "update venue",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkyMjcxOH0.wvmg5KIfzQuPKB9jLH_vRd2xA2N3ikrkQ8PHdVXPaVw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Lapangan Futsal Garuda Premium\",\r\n  \"category\": \"Futsal\",\r\n  \"location\": \"Medan Johor\",\r\n  \"stock_availability\": 1,\r\n  \"rental_cost\": 120000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/venues/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "venues",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "update venue",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Lapangan Futsal Garuda Premium\",\r\n  \"category\": \"Futsal\",\r\n  \"location\": \"Medan Johor\",\r\n  \"stock_availability\": 1,\r\n  \"rental_cost\": 120000\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/venues/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "venues",
+                    "1"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 02:32:16 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "32"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"admin access only\"\n}"
+            },
+            {
+              "name": "update venue",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Lapangan Futsal Garuda Premium\",\r\n  \"category\": \"Futsal\",\r\n  \"location\": \"Medan Johor\",\r\n  \"stock_availability\": 1,\r\n  \"rental_cost\": 120000\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/venues/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "venues",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 19 Jun 2026 02:35:48 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "271"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Lapangan Futsal Garuda Premium\",\n        \"category\": \"Futsal\",\n        \"location\": \"Medan Johor\",\n        \"stock_availability\": 1,\n        \"rental_cost\": 120000,\n        \"created_at\": \"2026-06-19T09:01:18.37847Z\",\n        \"updated_at\": \"2026-06-19T09:35:48.665793Z\"\n    },\n    \"message\": \"venue updated successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "venues by id",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "rentals",
+      "item": [
+        {
+          "name": "rentals",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InN5YWRhbUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MTkyODQ5NX0.BckNVrwQ91anGs3GOhZu40wDunuAULAmzO_HCw2nb4E",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"venue_id\": 1,\r\n  \"rental_date\": \"2026-06-20\",\r\n  \"start_time\": \"19:00\",\r\n  \"end_time\": \"21:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/rentals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "rentals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rentals",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
