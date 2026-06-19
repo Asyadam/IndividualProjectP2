@@ -9,6 +9,8 @@ import (
 type UserRepository interface {
 	Create(user models.User) (models.User, error)
 	FindByEmail(email string) (models.User, error)
+	FindByID(id int) (models.User, error)
+	AddDeposit(userID int, amount int) (models.User, error)
 }
 
 type userRepository struct {
@@ -60,6 +62,62 @@ func (r *userRepository) FindByEmail(email string) (models.User, error) {
 	`
 
 	err := r.db.QueryRow(query, email).Scan(
+		&user.ID,
+		&user.Username,
+		&user.Email,
+		&user.Password,
+		&user.DepositAmount,
+		&user.Role,
+		&user.CreatedAt,
+		&user.UpdatedAt,
+	)
+
+	if err != nil {
+		return models.User{}, err
+	}
+
+	return user, nil
+}
+
+func (r *userRepository) FindByID(id int) (models.User, error) {
+	var user models.User
+
+	query := `
+		SELECT id, username, email, password, deposit_amount, role, created_at, updated_at
+		FROM users
+		WHERE id = $1
+	`
+
+	err := r.db.QueryRow(query, id).Scan(
+		&user.ID,
+		&user.Username,
+		&user.Email,
+		&user.Password,
+		&user.DepositAmount,
+		&user.Role,
+		&user.CreatedAt,
+		&user.UpdatedAt,
+	)
+
+	if err != nil {
+		return models.User{}, err
+	}
+
+	return user, nil
+}
+
+func (r *userRepository) AddDeposit(userID int, amount int) (models.User, error) {
+	var user models.User
+
+	query := `
+		UPDATE users
+		SET deposit_amount = deposit_amount + $1,
+		    updated_at = CURRENT_TIMESTAMP
+		WHERE id = $2
+		RETURNING id, username, email, password, deposit_amount, role, created_at, updated_at
+	`
+
+	err := r.db.QueryRow(query, amount, userID).Scan(
 		&user.ID,
 		&user.Username,
 		&user.Email,

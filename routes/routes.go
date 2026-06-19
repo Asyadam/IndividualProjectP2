@@ -27,11 +27,26 @@ func InitRoutes(e *echo.Echo) {
 	venueService := services.NewVenueService(venueRepository)
 	venueHandler := handlers.NewVenueHandler(venueService)
 
+	depositRepository := repositories.NewDepositRepository(config.DB)
+	xenditService := services.NewXenditService()
+	depositService := services.NewDepositService(userRepository, depositRepository, xenditService)
+	depositHandler := handlers.NewDepositHandler(depositService)
+
+	rentalRepository := repositories.NewRentalRepository(config.DB)
+	rentalService := services.NewRentalService(userRepository, venueRepository, rentalRepository)
+	rentalHandler := handlers.NewRentalHandler(rentalService)
+
 	e.POST("/register", authHandler.Register)
 	e.POST("/login", authHandler.Login)
+
+	e.POST("/deposits", depositHandler.CreateDeposit, middlewares.JWTMiddleware)
+	e.POST("/xendit/callback", depositHandler.XenditCallback)
 
 	e.POST("/venues", venueHandler.Create, middlewares.JWTMiddleware, middlewares.AdminOnly)
 	e.GET("/venues", venueHandler.GetAll)
 	e.GET("/venues/:id", venueHandler.GetByID)
 	e.PUT("/venues/:id", venueHandler.Update, middlewares.JWTMiddleware, middlewares.AdminOnly)
+
+	e.POST("/rentals", rentalHandler.CreateRental, middlewares.JWTMiddleware)
+	e.GET("/rentals", rentalHandler.GetRentalHistory, middlewares.JWTMiddleware)
 }
